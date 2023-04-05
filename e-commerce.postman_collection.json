@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "b185bacb-3acd-4082-9081-87164f511a17",
+		"name": "e-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25567509"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "StartFragmentStartFragment\n\n//output  \n\\[  \n{  \nid:1,  \ntitle:'...',  \nprice:'...',  \ncategory:'...',  \ndescription:'...',  \nimage:'...'  \n},  \n/\\*...\\*/  \n{  \nid:30,  \ntitle:'...',  \nprice:'...',  \ncategory:'...',  \ndescription:'...',  \nimage:'...'  \n}  \n\\]  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						},
+						"description": "StartFragment\n\n//output  \n{  \nid:1,  \ntitle:'...',  \nprice:'...',  \ncategory:'...',  \ndescription:'...',  \nimage:'...'  \n}\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Limit results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products?limit=3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						},
+						"description": "StartFragment\n\n  \n  \n//output  \n\\[  \n{  \nid:1,  \ntitle:'...',  \nprice:'...',  \ncategory:'...',  \ndescription:'...',  \nimage:'...'  \n}  \n/\\*...\\*/  \n{  \nid:5,  \ntitle:'...',  \nprice:'...',  \ncategory:'...',  \ndescription:'...',  \nimage:'...'  \n}  \n\\]\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Sort results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "StartFragment\n\nDefault value is in ascending mode, you can use with 'desc' or 'asc' as you want.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all categories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get products in a specific category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get products in a specific category use limit and sort",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add new product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test product\",\r\n    \"price\": 13.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"title\": \"test product\",\r\n    \"price\": 15.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product Patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"title\": \"test product\",\r\n    \"price\": 15.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "User login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"mor_2314\",\r\n  \"password\": \"83r5^_\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
