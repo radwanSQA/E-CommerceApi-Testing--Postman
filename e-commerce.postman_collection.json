@@ -11,6 +11,18 @@
 			"item": [
 				{
 					"name": "Get all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -75,6 +87,21 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "{{url}}/products?sort=desc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								}
+							]
+						},
 						"description": "StartFragment\n\nDefault value is in ascending mode, you can use with 'desc' or 'asc' as you want.\n\nEndFragment"
 					},
 					"response": []
@@ -83,7 +110,17 @@
 					"name": "Get all categories",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"categories"
+							]
+						}
 					},
 					"response": []
 				},
@@ -91,7 +128,18 @@
 					"name": "Get products in a specific category",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/category/jewelery",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"jewelery"
+							]
+						}
 					},
 					"response": []
 				},
@@ -99,13 +147,49 @@
 					"name": "Get products in a specific category use limit and sort",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/category/jewelery?sort=desc&limit=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"jewelery"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Add new product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"Id\",jsonData.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "bearer"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -163,7 +247,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n    \"title\": \"test product\",\r\n    \"price\": 15.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}",
+							"raw": " {\r\n    \"title\": \"test product 1\",\r\n    \"price\": 15.5,\r\n    \"description\": \"lorem ipsum set\",\r\n    \"image\": \"https://i.pravatar.cc\",\r\n    \"category\": \"electronic\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,6 +312,369 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "Get all carts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakestoreapi.com/carts/5",
+							"protocol": "https",
+							"host": [
+								"fakestoreapi",
+								"com"
+							],
+							"path": [
+								"carts",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Limit results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts?limit=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts?sort=desc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get carts in a date range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts/startdate=2019-12-10&enddate=2020-10-10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"startdate=2019-12-10&enddate=2020-10-10"
+							]
+						},
+						"description": "StartFragment\n\n//output  \n\\[  \n{  \nid:1,  \nuserId:1,  \ndate:2019-12-10,  \nproducts:\\[...\\]  \n},  \n/\\*...\\*/  \n{  \nid:4,  \nuserId:1,  \ndate:2020-10-10,  \nproducts:\\[...\\]  \n}  \n\\]  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user carts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts/user/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "                {\r\n                    \"userId\":5,\r\n                    \"date\":\"2020-02-03\",\r\n                    \"products\":[{\"productId\":5,\"quantity\":1},{\"productId\":1,\"quantity\":5}]\r\n                }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n                    \"userId\":3,\r\n                    \"date\":\"2019-12-10\",\r\n                    \"products\":[{\"productId\":5,\"quantity\":1},{\"productId\":1,\"quantity\":5}]\r\n                }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/carts/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/carts/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"carts",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Limit results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?limit=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sort results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users?sort=desc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"John@gmail.com\",\r\n   \"username\": \"johnd\",\r\n   \"password\": \"m38rmF$\",\r\n   \"name\": {\r\n      \"firstname\": \"John\",\r\n      \"lastname\": \"Doe\"\r\n   },\r\n   \"address\": {\r\n      \"city\": \"kilcoole\",\r\n      \"street\": \"7835 new road\",\r\n      \"number\": 3,\r\n      \"zipcode\": \"12926-3874\",\r\n      \"geolocation\": {\r\n         \"lat\": \"-37.3159\",\r\n         \"long\": \"81.1496\"\r\n      }\r\n   },\r\n   \"phone\": \"1-570-236-7033\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"John@gmail.com\",\r\n   \"username\": \"johnd\",\r\n   \"password\": \"m38rmF$\",\r\n   \"name\": {\r\n      \"firstname\": \"John\",\r\n      \"lastname\": \"Doe\"\r\n   },\r\n   \"address\": {\r\n      \"city\": \"kilcoole\",\r\n      \"street\": \"7835 new road\",\r\n      \"number\": 3,\r\n      \"zipcode\": \"12926-3874\",\r\n      \"geolocation\": {\r\n         \"lat\": \"-37.3159\",\r\n         \"long\": \"81.1496\"\r\n      }\r\n   },\r\n   \"phone\": \"1-570-236-7033\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"6"
 							]
 						}
 					},
